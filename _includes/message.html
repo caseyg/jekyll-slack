@@ -2,13 +2,13 @@
 {% assign userimg = message.user | user_img %}
 {% capture messagets %}{{ message.ts }}{% endcapture %}
 {% assign messagetime = messagets | slack_timestamp | date: "%r" %}
-{% assign messagetext = message.text | slack_message | markdownify %}
+{% assign messagetext = message.text | slack_message | markdownify | emojijfy %}
 
 <div>
-  <img src="{{ userimg }}" />
-  <div class="message">
+  <img loading="lazy" src="{{ userimg }}" />
+  <div class="message" id="{{ messagets }}">
     <div class="username">{{ username }}</div>
-    <div class="time">{{ messagetime }}</div>
+    <div class="time"><a href="#{{messagets}}">{{ messagetime }}</a></div>
     <div class="msg">{{ messagetext }}</div>
   </div>
 </div>

@@ -1,0 +1,28 @@
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+    <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-5 fw-semibold">List group</span>
+    </a>
+    <div class="wrapper">
+        <input
+        placeholder="Search&hellip;"
+        type="search"
+        id="search"
+        class="search-input"
+      />
+    <div class="list-group list-group-flush border-bottom scrollarea">
+        {% for channel in site.data.channels %}
+        <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <strong class="mb-1">#{{channel.name}}</strong>
+                <small>{{channel.members | size}}</small>
+            </div>
+            <div class="col-10 mb-1 small">
+                {% if channel.purpose.value != "" %}<p><strong>Purpose:</strong> {{channel.purpose.value}}</p>{% endif %}
+
+                {% if channel.topic.value != "" %}<p><strong>Topic:</strong> {{channel.topic.value}}</p>{% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

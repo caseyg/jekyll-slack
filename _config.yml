@@ -1,5 +1,5 @@
 # Site settings
-title: Your awesome title
+title: ResearchOps Community Slack Archive
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   A Jekyll-based Slack static archive

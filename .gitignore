@@ -2,3 +2,5 @@ _site
 .sass-cache
 _data
 _gh-pages.yml
+.DS_Store
+assets/lunr.min.js

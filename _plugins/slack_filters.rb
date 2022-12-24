@@ -18,8 +18,8 @@ module Jekyll
     def user_name(id)
       if(id == "USLACKBOT")
         return "SlackBot"
-      else
-        return @context.registers[:site].data["users"].find {|user| user["id"] == id}["name"]
+      elsif(!@context.registers[:site].data["users"].find {|user| user["id"] == id}.nil?)
+        return @context.registers[:site].data["users"].find {|user| user["id"] == id}["real_name"]
       end
     end
 
@@ -27,7 +27,7 @@ module Jekyll
     def user_img(id)
       if(id == "USLACKBOT")
         return "https://slack.global.ssl.fastly.net/66f9/img/slackbot_32.png"
-      else
+      elsif(!@context.registers[:site].data["users"].find {|user| user["id"] == id}.nil?)
         return @context.registers[:site].data["users"].find {|user| user["id"] == id}["profile"]["image_32"]
       end
     end
@@ -39,7 +39,9 @@ module Jekyll
 
     # Retrieve channel purpose from channel name
     def channel_purpose(name)
-      return @context.registers[:site].data["channels"].find {|channel| channel["name"] == name}["purpose"]["value"]
+      if(!@context.registers[:site].data["channels"].find {|channel| channel["name"] == name}.nil?)
+        return @context.registers[:site].data["channels"].find {|channel| channel["name"] == name}["purpose"]["value"]
+      end
     end
 
     # Replace user IDs with usernames by searching users.json
